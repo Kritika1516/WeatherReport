@@ -21,6 +21,7 @@ export default class Splash extends Component {
     saveData = async () => {
         let userId = "Kritika";
         let password = "Singh";
+        let zipcode='123456';
         console.log("save data");
         try {
             await AsyncStorage.setItem('userId', userId);
