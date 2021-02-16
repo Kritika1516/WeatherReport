@@ -7,20 +7,12 @@ import { checkLogin } from '../actions/action';
 import { bindActionCreators } from 'redux';
 import configureStore from '../store/configureStore'
 import { LOGIN_CLICK } from '../constants';
-
-
-var logoImage = require("../assets/logo-w.png")
 var isNavigate = true
 class Login extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            userName: "",
-            password: "",
-            inputUsername: "",
-            inputPassword: "",
-            //isLoggedIn: false,
             zipCode:''
         }
 
@@ -35,8 +27,6 @@ class Login extends Component {
     }
     componentDidMount = () => {
         console.log("did mount");
-        AsyncStorage.getItem('userId').then((value) => this.setState({ 'userName': value }));
-        AsyncStorage.getItem('password').then((value) => this.setState({ 'password': value }));
     }
     changeLoginState = () => {
       this.props.checkLogin(true);
@@ -57,56 +47,25 @@ class Login extends Component {
         this.setState({ zipCode: text })
      }
     formValidate = async () => {
-        const { inputUsername, inputPassword} = this.state;
-        let myusername = this.state.userName;
-        let mypassword = this.state.password;
+
         let zipCode = this.state.zipCode;
         console.log("zip code in form validation",zipCode);
-        if (inputUsername == "" && inputPassword == "") {
-            Alert.alert('Plese fill the Username and Password');
-        }
-        else if (inputUsername == myusername && inputPassword == mypassword) {
             if (zipCode.length == 6){
                 this.savezipCode();
                 isNavigate = true;
                 this.props.checkLogin(false);
-                Alert.alert('Success!');
+                //Alert.alert('Success!');
             } else {
                 Alert.alert('Please provide valid zip code');
             }
             
-        } else {
-            Alert.alert('Incorrect credential');
-        }
+         
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <View>
-                    <View style={styles.mainbody}>
-                        <Image source={logoImage} style={styles.imgLogin} />
-                    </View>
-
-                    <View style={{ marginBottom: 16 }}>
-                        <Text style={styles.lablelUser}>
-                            Username
-                  </Text>
-                        <TextInput style={styles.inputUser} autoCapitalize="none" onChangeText={inputUsername => this.setState({ inputUsername })}></TextInput>
-                        {/* <Item reguar style={styles.inputUser}>
-                      <Input autoCapitalize="none" style={{color: "#8392E0"}}></Input>
-                  </Item> */}
-                    </View>
-
-                    <View style={{ marginBottom: 16 }}>
-                        <Text style={styles.lablelUser}>
-                            Password
-                  </Text>
-                        <TextInput style={styles.inputUser} autoCapitalize="none" secureTextEntry={true} onChangeText={inputPassword => this.setState({ inputPassword })}></TextInput>
-                        {/* <Item reguar style={styles.inputUser}>
-                      <Input autoCapitalize="none" style={{color: "#8392E0"}}></Input>
-                  </Item> */}
-                    </View>
                     <View style={{ marginBottom: 16 }}>
                         <Text style={styles.lablelUser}>
                             Zip code
@@ -121,7 +80,7 @@ class Login extends Component {
                             style={styles.btnSignin}
                             onPress={this.formValidate}
                             underlayColor='#fff'>
-                            <Text style={styles.labelBtn}>Sign In</Text>
+                            <Text style={styles.labelBtn}>Check</Text>
                         </TouchableHighlight>
                         {/* <Button  title="Sign In" color="#FFFFFF" borderRadius={8} >
                 

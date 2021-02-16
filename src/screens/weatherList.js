@@ -30,6 +30,7 @@ var self
     let countryCode = 'IN';
     let zipCode = this.state.zipCode;
     let code = zipCode + "," + countryCode;
+    //let code = zipCode;
     console.log("code",code);
     NetInfo.fetch().then(state => {
         console.log("Connection type", state.type);

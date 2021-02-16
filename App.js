@@ -8,26 +8,10 @@ import WeatherReportList from './src/screens/weatherList';
 
 const App=createStackNavigator({
 
-  Splash:{screen:Splash,navigationOptions:{headerShown:false}},
+  //Splash:{screen:Splash,navigationOptions:{headerShown:false}},
   Login:{screen:Login,navigationOptions:{headerShown:false}},
   WeatherReportList:{screen:WeatherReportList,navigationOptions:{}}
 
 });
-
-// const mapStateToProps = state => ({
-//   isloggedIn: state.isloggedIn,
-// });
- 
-// const ActionCreators = Object.assign(
-//   {},
-//   isloggedIn,
-// );
-// const mapDispatchToProps = dispatch => ({
-//   actions: bindActionCreators(ActionCreators, dispatch),
-// });
-
- 
-
-//export default connect(mapStateToProps, mapDispatchToProps)createAppContainer(App);
 
 export default createAppContainer(App);
